@@ -21,12 +21,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author User
  */
-public class category extends javax.swing.JFrame {
+public class product extends javax.swing.JFrame {
 
     /**
      * Creates new form category
      */
-    public category() {
+    public product() {
         initComponents();
         table_update();
     }
@@ -78,11 +78,11 @@ public class category extends javax.swing.JFrame {
                 }
                 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
             }
                
         } catch (SQLException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -183,16 +183,16 @@ public class category extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         jLabel7.setText("Super Market");
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel8.setText("Category");
+        jLabel8.setText("Product");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Product", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel9.setText("Category");
 
@@ -237,12 +237,12 @@ public class category extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCat))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCat)
+                    .addComponent(txtstatus, 0, 104, Short.MAX_VALUE))
+                .addContainerGap(572, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnUpdate)
@@ -300,17 +300,18 @@ public class category extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 295, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addGap(213, 213, 213))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,13 +320,12 @@ public class category extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(62, 62, 62)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -361,9 +361,9 @@ public class category extends javax.swing.JFrame {
             txtstatus.setSelectedIndex(-1);
             txtCat.requestFocus();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         
@@ -391,9 +391,9 @@ public class category extends javax.swing.JFrame {
             txtCat.requestFocus();
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -437,9 +437,9 @@ public class category extends javax.swing.JFrame {
                 txtCat.requestFocus();
                  
              } catch (ClassNotFoundException ex) {
-                 Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
              } catch (SQLException ex) {
-                 Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(product.class.getName()).log(Level.SEVERE, null, ex);
              }
             
          }
@@ -448,28 +448,25 @@ public class category extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        
         category catPage = new category(); 
         catPage.setVisible(true); 
         this.dispose(); 
-        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
         brand brandPage = new brand(); 
         brandPage.setVisible(true); 
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        
         product productPage = new product(); 
         productPage.setVisible(true); 
         this.dispose(); 
     }//GEN-LAST:event_jLabel3MouseClicked
 
-    
     /**
      * @param args the command line arguments
      */
@@ -487,20 +484,21 @@ public class category extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(product.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new category().setVisible(true);
+                new product().setVisible(true);
             }
         });
     }
