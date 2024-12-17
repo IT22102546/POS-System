@@ -278,6 +278,11 @@ private String getBrandName(int brandId) {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Pos");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -758,6 +763,13 @@ private String getBrandName(int brandId) {
     private void txtretailpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtretailpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtretailpActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        pos posPage = new pos(); 
+        posPage.setVisible(true); 
+        this.dispose(); 
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
