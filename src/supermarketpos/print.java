@@ -24,14 +24,16 @@ public class print extends javax.swing.JFrame {
     String lsub;
     String lpay;
     String lbal;
+    String lcashier;
     
-    public print(String sub , String pay , String bal , TableModel tablemodel) throws PrinterException {
+    public print(String sub , String pay , String bal ,String cashier, TableModel tablemodel) throws PrinterException {
          
          initComponents();
 
         this.lsub = sub;
         this.lpay = pay;
         this.lbal = bal;
+        this.lcashier = cashier;
 
       
         txtprint.setText(txtprint.getText() + "*******************************************************\n");
@@ -39,21 +41,40 @@ public class print extends javax.swing.JFrame {
         txtprint.setText(txtprint.getText() + "\n");
         txtprint.setText(txtprint.getText() + String.format("%-20s %-10s %-10s %-10s\n", "Product", "Price", "Quantity", "Total"));
 
-     
+// Define maximum column widths
+        final int PRODUCT_WIDTH = 20;
+        final int PRICE_WIDTH = 10;
+        final int QTY_WIDTH = 10;
+        final int TOTAL_WIDTH = 10;
+
         for (int i = 0; i < tablemodel.getRowCount(); i++) {
+            // Get values from the table
             String product = tablemodel.getValueAt(i, 1).toString();
             String price = tablemodel.getValueAt(i, 2).toString();
             String qty = tablemodel.getValueAt(i, 3).toString();
             String total = tablemodel.getValueAt(i, 4).toString();
 
+            // Truncate strings to fit column widths
+            product = product.length() > PRODUCT_WIDTH ? product.substring(0, PRODUCT_WIDTH - 1) + "…" : product;
+            price = price.length() > PRICE_WIDTH ? price.substring(0, PRICE_WIDTH - 1) + "…" : price;
+            qty = qty.length() > QTY_WIDTH ? qty.substring(0, QTY_WIDTH - 1) + "…" : qty;
+            total = total.length() > TOTAL_WIDTH ? total.substring(0, TOTAL_WIDTH - 1) + "…" : total;
+
+            // Append formatted text to the print area
             txtprint.setText(txtprint.getText() + String.format("%-20s %-10s %-10s %-10s\n", product, price, qty, total));
         }
 
+
        
         txtprint.setText(txtprint.getText() + "\n");
-        txtprint.setText(txtprint.getText() + String.format("%-30s %s\n", "Sub Total:", sub));
-        txtprint.setText(txtprint.getText() + String.format("%-30s %s\n", "Pay:",       pay));
-        txtprint.setText(txtprint.getText() + String.format("%-30s %s\n", "Balance:",   bal));
+        txtprint.setText(txtprint.getText() + "Sub Total :" + lsub + "\n");
+        txtprint.setText(txtprint.getText() + "Pay       :"+  lpay + "\n") ;
+        txtprint.setText(txtprint.getText() + "Balance   :  "+lbal + "\n");
+        
+         txtprint.setText(txtprint.getText() + "\n");
+         txtprint.setText(txtprint.getText() + "\n");
+        
+        txtprint.setText(txtprint.getText() +"Cashier:" + lcashier + "\n");
 
         txtprint.setText(txtprint.getText() + "*******************************************************\n");
         txtprint.setText(txtprint.getText() + "*******************************************************\n");

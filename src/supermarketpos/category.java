@@ -481,9 +481,11 @@ public class category extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        pos posPage = new pos(); 
-        posPage.setVisible(true); 
-        this.dispose(); 
+        login l = new login();
+        this.hide();
+        l.setVisible(true);
+        
+        
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

@@ -113,6 +113,11 @@ public class brand extends javax.swing.JFrame {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -479,9 +484,7 @@ public class brand extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        pos posPage = new pos(); 
-        posPage.setVisible(true); 
-        this.dispose(); 
+        
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -490,6 +493,15 @@ public class brand extends javax.swing.JFrame {
         cashPage.setVisible(true); 
         this.dispose(); 
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        
+        login l = new login();
+        this.hide();
+        l.setVisible(true);
+        
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     /**
      * @param args the command line arguments

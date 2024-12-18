@@ -36,6 +36,16 @@ public class pos extends javax.swing.JFrame {
         
     }
     
+    String lname;
+    
+     public pos(String name) {
+        initComponents();
+        
+        this.lname = name;
+        jLabel16.setText(lname);
+        
+    }
+    
     Connection con1;
     PreparedStatement insert;
     ResultSet rs;
@@ -83,6 +93,7 @@ public class pos extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtbal = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -303,6 +314,10 @@ public class pos extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel16.setText("jLabel16");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -312,9 +327,6 @@ public class pos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +353,12 @@ public class pos extends javax.swing.JFrame {
                                         .addComponent(txtbal, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())))))
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,8 +367,12 @@ public class pos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addGap(62, 62, 62)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -467,7 +488,7 @@ public class pos extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        pos brandPage = new pos(); 
+        brand brandPage = new brand(); 
         brandPage.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
@@ -512,17 +533,19 @@ public class pos extends javax.swing.JFrame {
         String subtot = txtsub.getText();
         String pay = txtpay.getText();
         String bal = txtbal.getText();
+        String cashier = jLabel16.getText();
         int lastInsertId = 0;
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-            String query = "insert into sales(date,subtotal,pay,balance)values(?,?,?,?)";
+            String query = "insert into sales(date,cashier,subtotal,pay,balance)values(?,?,?,?,?)";
             insert = con1.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
             insert.setString(1,date);
-            insert.setString(2,subtot);
-            insert.setString(3,pay);
-            insert.setString(4,bal);
+            insert.setString(2,cashier);
+            insert.setString(3,subtot);
+            insert.setString(4,pay);
+            insert.setString(5,bal);
             insert.executeUpdate();
             
             ResultSet generatedKeyResult = insert.getGeneratedKeys();
@@ -591,9 +614,10 @@ public class pos extends javax.swing.JFrame {
         String sub = txtsub.getText();
         String pay = txtpay.getText();
         String bal = txtbal.getText();
+        String cashier = jLabel16.getText();
         
         try {
-            new print(sub,pay,bal,jTable1.getModel()).setVisible(true);
+            new print(sub,pay,bal,cashier,jTable1.getModel()).setVisible(true);
         } catch (PrinterException ex) {
             Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -716,6 +740,7 @@ public class pos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -50,7 +50,7 @@ public class cashier extends javax.swing.JFrame {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-                pst = con1.prepareStatement("select * from brand");
+                pst = con1.prepareStatement("select * from cashier");
                 
                 ResultSet rs = pst.executeQuery();
                 
@@ -69,7 +69,7 @@ public class cashier extends javax.swing.JFrame {
                     for(int i=1; i<=c; i++ )
                     {
                         v2.add(rs.getString("id"));
-                        v2.add(rs.getString("brand"));
+                        v2.add(rs.getString("username"));
                         v2.add(rs.getString("status"));
                     }
                     
@@ -101,11 +101,13 @@ public class cashier extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtBrand = new javax.swing.JTextField();
+        txtuser = new javax.swing.JTextField();
         txtstatus = new javax.swing.JComboBox<>();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        txtpass = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -200,17 +202,17 @@ public class cashier extends javax.swing.JFrame {
         jLabel7.setText("Super Market");
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel8.setText("Brand");
+        jLabel8.setText("Cashier");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Brand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cashier", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel9.setText("Brand");
+        jLabel9.setText("User Name");
 
         jLabel10.setText("Status");
 
-        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+        txtuser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBrandActionPerformed(evt);
+                txtuserActionPerformed(evt);
             }
         });
 
@@ -237,28 +239,38 @@ public class cashier extends javax.swing.JFrame {
             }
         });
 
+        jLabel11.setText("Password");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtBrand))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtuser)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(83, 83, 83)
+                            .addComponent(btnAdd)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnUpdate)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnDelete)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel11)
+                            .addGap(34, 34, 34)
+                            .addComponent(txtpass))))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addComponent(btnAdd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete)
-                .addGap(7, 7, 7))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,17 +278,21 @@ public class cashier extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jLabel11)
+                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
                     .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(btnAdd))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(btnDelete))
+                .addContainerGap())
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -284,7 +300,7 @@ public class cashier extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Brand", "Status"
+                "ID", "User Name", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -320,7 +336,7 @@ public class cashier extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                        .addContainerGap(32, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,9 +358,9 @@ public class cashier extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+    private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBrandActionPerformed
+    }//GEN-LAST:event_txtuserActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -352,24 +368,27 @@ public class cashier extends javax.swing.JFrame {
          int selectedIndex = jTable1.getSelectedRow();
          
          int id  = Integer.parseInt(d1.getValueAt(selectedIndex, 0).toString());
-         String name = txtBrand.getText();
+         String username = txtuser.getText();
+         String password = txtpass.getText();
          String status = txtstatus.getSelectedItem().toString();
          
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-            pst = con1.prepareStatement("update brand set brand=?, status=? where id=?");
-            pst.setString(1,name);
-            pst.setString(2,status);
-            pst.setInt(3,id);
+            pst = con1.prepareStatement("update cashier set username=?, password=? ,status=? where id=?");
+            pst.setString(1,username);
+            pst.setString(2,password);
+             pst.setString(3,status);
+            pst.setInt(4,id);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Brand Updated Successfully!");
+            JOptionPane.showMessageDialog(null, "User Updated Successfully!");
             
             table_update();
             
-            txtBrand.setText("");
+            txtuser.setText("");
+            txtpass.setText("");
             txtstatus.setSelectedIndex(-1);
-            txtBrand.requestFocus();
+            txtuser.requestFocus();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -382,23 +401,27 @@ public class cashier extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        String name = txtBrand.getText();
+        String username = txtuser.getText();
+        String password = txtpass.getText();
         String status = txtstatus.getSelectedItem().toString();
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-            pst = con1.prepareStatement("insert into brand(brand,status)values(?,?)");
-            pst.setString(1,name);
-            pst.setString(2,status);
+            pst = con1.prepareStatement("insert into cashier(username,password,status)values(?,?,?)");
+            pst.setString(1,username);
+            pst.setString(2,password);
+            pst.setString(3,status);
+            
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Brand Added Successfully!");
+            JOptionPane.showMessageDialog(null, "User Added Successfully!");
             
             table_update();
             
-            txtBrand.setText("");
+            txtuser.setText("");
+            txtpass.setText("");
             txtstatus.setSelectedIndex(-1);
-            txtBrand.requestFocus();
+            txtuser.requestFocus();
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
@@ -414,7 +437,8 @@ public class cashier extends javax.swing.JFrame {
          DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
          int selectedIndex = jTable1.getSelectedRow();
          
-         txtBrand.setText(d1.getValueAt(selectedIndex, 1).toString());
+         txtuser.setText(d1.getValueAt(selectedIndex, 1).toString());
+        
          txtstatus.setSelectedItem(d1.getValueAt(selectedIndex, 2).toString());
          
         
@@ -442,9 +466,9 @@ public class cashier extends javax.swing.JFrame {
             
                 table_update();
             
-                txtBrand.setText("");
+                txtuser.setText("");
                 txtstatus.setSelectedIndex(-1);
-                txtBrand.requestFocus();
+                txtuser.requestFocus();
                  
              } catch (ClassNotFoundException ex) {
                  Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
@@ -479,9 +503,11 @@ public class cashier extends javax.swing.JFrame {
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-        pos posPage = new pos(); 
-        posPage.setVisible(true); 
-        this.dispose(); 
+        login l = new login();
+        this.hide();
+        l.setVisible(true); 
+        
+       
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
@@ -535,6 +561,7 @@ public class cashier extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -547,7 +574,8 @@ public class cashier extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtBrand;
+    private javax.swing.JPasswordField txtpass;
     private javax.swing.JComboBox<String> txtstatus;
+    private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }
