@@ -21,12 +21,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author User
  */
-public class category extends javax.swing.JFrame {
+public class cashier extends javax.swing.JFrame {
 
     /**
      * Creates new form category
      */
-    public category() {
+    public cashier() {
         initComponents();
         table_update();
     }
@@ -50,7 +50,7 @@ public class category extends javax.swing.JFrame {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-                pst = con1.prepareStatement("select * from category");
+                pst = con1.prepareStatement("select * from brand");
                 
                 ResultSet rs = pst.executeQuery();
                 
@@ -69,7 +69,7 @@ public class category extends javax.swing.JFrame {
                     for(int i=1; i<=c; i++ )
                     {
                         v2.add(rs.getString("id"));
-                        v2.add(rs.getString("category"));
+                        v2.add(rs.getString("brand"));
                         v2.add(rs.getString("status"));
                     }
                     
@@ -78,11 +78,11 @@ public class category extends javax.swing.JFrame {
                 }
                 
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
             }
                
         } catch (SQLException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -101,7 +101,7 @@ public class category extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtCat = new javax.swing.JTextField();
+        txtBrand = new javax.swing.JTextField();
         txtstatus = new javax.swing.JComboBox<>();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
@@ -200,17 +200,17 @@ public class category extends javax.swing.JFrame {
         jLabel7.setText("Super Market");
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel8.setText("Category");
+        jLabel8.setText("Brand");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Category", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Brand", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel9.setText("Category");
+        jLabel9.setText("Brand");
 
         jLabel10.setText("Status");
 
-        txtCat.addActionListener(new java.awt.event.ActionListener() {
+        txtBrand.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCatActionPerformed(evt);
+                txtBrandActionPerformed(evt);
             }
         });
 
@@ -249,7 +249,7 @@ public class category extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtstatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCat))
+                    .addComponent(txtBrand))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(83, Short.MAX_VALUE)
@@ -266,7 +266,7 @@ public class category extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -284,7 +284,7 @@ public class category extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Category", "Status"
+                "ID", "Brand", "Status"
             }
         ) {
             Class[] types = new Class [] {
@@ -342,9 +342,9 @@ public class category extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCatActionPerformed
+    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCatActionPerformed
+    }//GEN-LAST:event_txtBrandActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -352,28 +352,28 @@ public class category extends javax.swing.JFrame {
          int selectedIndex = jTable1.getSelectedRow();
          
          int id  = Integer.parseInt(d1.getValueAt(selectedIndex, 0).toString());
-         String name = txtCat.getText();
+         String name = txtBrand.getText();
          String status = txtstatus.getSelectedItem().toString();
          
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-            pst = con1.prepareStatement("update category set category=?, status=? where id=?");
+            pst = con1.prepareStatement("update brand set brand=?, status=? where id=?");
             pst.setString(1,name);
             pst.setString(2,status);
             pst.setInt(3,id);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Category Updated Successfully!");
+            JOptionPane.showMessageDialog(null, "Brand Updated Successfully!");
             
             table_update();
             
-            txtCat.setText("");
+            txtBrand.setText("");
             txtstatus.setSelectedIndex(-1);
-            txtCat.requestFocus();
+            txtBrand.requestFocus();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
         }
            
         
@@ -382,28 +382,28 @@ public class category extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         
-        String name = txtCat.getText();
+        String name = txtBrand.getText();
         String status = txtstatus.getSelectedItem().toString();
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-            pst = con1.prepareStatement("insert into category(category,status)values(?,?)");
+            pst = con1.prepareStatement("insert into brand(brand,status)values(?,?)");
             pst.setString(1,name);
             pst.setString(2,status);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Category Added Successfully!");
+            JOptionPane.showMessageDialog(null, "Brand Added Successfully!");
             
             table_update();
             
-            txtCat.setText("");
+            txtBrand.setText("");
             txtstatus.setSelectedIndex(-1);
-            txtCat.requestFocus();
+            txtBrand.requestFocus();
             
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -414,7 +414,7 @@ public class category extends javax.swing.JFrame {
          DefaultTableModel d1 = (DefaultTableModel)jTable1.getModel();
          int selectedIndex = jTable1.getSelectedRow();
          
-         txtCat.setText(d1.getValueAt(selectedIndex, 1).toString());
+         txtBrand.setText(d1.getValueAt(selectedIndex, 1).toString());
          txtstatus.setSelectedItem(d1.getValueAt(selectedIndex, 2).toString());
          
         
@@ -435,21 +435,21 @@ public class category extends javax.swing.JFrame {
              try {
                  Class.forName("com.mysql.jdbc.Driver");
                  con1 = DriverManager.getConnection("jdbc:mysql://localhost:3308/supermarketpos","root","");
-                 pst = con1.prepareStatement("delete from category where id=?");
+                 pst = con1.prepareStatement("delete from brand where id=?");
                  pst.setInt(1,id);
                  pst.executeUpdate();
-                 JOptionPane.showMessageDialog(null, "Category Deleted Successfully!");
+                 JOptionPane.showMessageDialog(null, "Brand Deleted Successfully!");
             
                 table_update();
             
-                txtCat.setText("");
+                txtBrand.setText("");
                 txtstatus.setSelectedIndex(-1);
-                txtCat.requestFocus();
+                txtBrand.requestFocus();
                  
              } catch (ClassNotFoundException ex) {
-                 Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
              } catch (SQLException ex) {
-                 Logger.getLogger(category.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(cashier.class.getName()).log(Level.SEVERE, null, ex);
              }
             
          }
@@ -458,22 +458,20 @@ public class category extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        
         category catPage = new category(); 
         catPage.setVisible(true); 
         this.dispose(); 
-        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        brand brandPage = new brand(); 
+        // TODO add your handling code here:
+        cashier brandPage = new cashier(); 
         brandPage.setVisible(true); 
-        this.dispose(); 
+        this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        
         product productPage = new product(); 
         productPage.setVisible(true); 
         this.dispose(); 
@@ -492,10 +490,7 @@ public class category extends javax.swing.JFrame {
         cashPage.setVisible(true); 
         this.dispose(); 
     }//GEN-LAST:event_jLabel6MouseClicked
- 
-                                       
 
-    
     /**
      * @param args the command line arguments
      */
@@ -513,20 +508,23 @@ public class category extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(category.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(cashier.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new category().setVisible(true);
+                new cashier().setVisible(true);
             }
         });
     }
@@ -549,7 +547,7 @@ public class category extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCat;
+    private javax.swing.JTextField txtBrand;
     private javax.swing.JComboBox<String> txtstatus;
     // End of variables declaration//GEN-END:variables
 }
