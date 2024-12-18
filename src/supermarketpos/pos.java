@@ -6,6 +6,7 @@
 package supermarketpos;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.print.PrinterException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -580,6 +581,22 @@ public class pos extends javax.swing.JFrame {
            
     }
     
+    public void print()
+    {
+        String sub = txtsub.getText();
+        String pay = txtpay.getText();
+        String bal = txtbal.getText();
+        
+        try {
+            new print(sub,pay,bal,jTable1.getModel()).setVisible(true);
+        } catch (PrinterException ex) {
+            Logger.getLogger(pos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
@@ -591,7 +608,9 @@ public class pos extends javax.swing.JFrame {
         
         txtbal.setText(String.valueOf(bal));
         
+        print();
         sales();
+        
         
        
     }//GEN-LAST:event_jButton2ActionPerformed
