@@ -36,10 +36,10 @@ public class print extends javax.swing.JFrame {
         this.lcashier = cashier;
 
       
-        txtprint.setText(txtprint.getText() + "*******************************************************\n");
-        txtprint.setText(txtprint.getText() + "******************** Super Market **********************\n");
+        txtprint.setText(txtprint.getText() + "*******************************************************************************\n");
+        txtprint.setText(txtprint.getText() + "******************** Super Market *********************************************\n");
         txtprint.setText(txtprint.getText() + "\n");
-        txtprint.setText(txtprint.getText() + String.format("%-20s %-10s %-10s %-10s\n", "Product", "Price", "Quantity", "Total"));
+        txtprint.setText(txtprint.getText() +  "Product" +"\t"+"\t"+ "Price" +"\t"+ "Quantity" +"\t"+ "Total"+"\n");
 
 // Define maximum column widths
         final int PRODUCT_WIDTH = 20;
@@ -61,7 +61,7 @@ public class print extends javax.swing.JFrame {
             total = total.length() > TOTAL_WIDTH ? total.substring(0, TOTAL_WIDTH - 1) + "…" : total;
 
             // Append formatted text to the print area
-            txtprint.setText(txtprint.getText() + String.format("%-20s %-10s %-10s %-10s\n", product, price, qty, total));
+            txtprint.setText(txtprint.getText()+product+"\t" +price+"\t"+ qty+"\t"+ total+"\n");
         }
 
 
@@ -76,9 +76,9 @@ public class print extends javax.swing.JFrame {
         
         txtprint.setText(txtprint.getText() +"Cashier:" + lcashier + "\n");
 
-        txtprint.setText(txtprint.getText() + "*******************************************************\n");
-        txtprint.setText(txtprint.getText() + "*******************************************************\n");
-        txtprint.setText(txtprint.getText() + "...................Thank You Come Again...........................\n");
+        txtprint.setText(txtprint.getText() + "*******************************************************************************\n");
+        txtprint.setText(txtprint.getText() + "*******************************************************************************\n");
+        txtprint.setText(txtprint.getText() + ".........................Thank You Come Again...................................\n");
 
         
         txtprint.print();
@@ -110,11 +110,15 @@ public class print extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
